@@ -384,6 +384,8 @@ public class DelegatingSubject implements Subject {
     public <V> V execute(Callable<V> callable) throws ExecutionException {
         Callable<V> associated = associateWith(callable);
         try {
+            // TODO 这里面有将subject绑定到处理当前request请求的线程的逻辑
+            //  SubjectCallable.call -> SubjectThreadState.bind
             return associated.call();
         } catch (Throwable t) {
             throw new ExecutionException(t);

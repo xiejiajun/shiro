@@ -79,9 +79,11 @@ public class SubjectCallable<V> implements Callable<V> {
 
     public V call() throws Exception {
         try {
+            // TODO 这里面有将subject绑定到处理当前request请求的线程的逻辑
             threadState.bind();
             return doCall(this.callable);
         } finally {
+            // TODO filter链执行完成，从当前线程解绑subject
             threadState.restore();
         }
     }

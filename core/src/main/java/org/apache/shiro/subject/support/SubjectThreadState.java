@@ -95,6 +95,7 @@ public class SubjectThreadState implements ThreadState {
         this.originalResources = ThreadContext.getResources();
         ThreadContext.remove();
 
+        // TODO 将subject绑定到处理当前request请求的线程
         ThreadContext.bind(this.subject);
         if (securityManager != null) {
             ThreadContext.bind(securityManager);

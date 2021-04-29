@@ -64,6 +64,7 @@ public class DefaultWebSubjectFactory extends DefaultSubjectFactory {
         ServletRequest request = wsc.resolveServletRequest();
         ServletResponse response = wsc.resolveServletResponse();
 
+        // TODO 根据request携带的信息创建web subject
         return new WebDelegatingSubject(principals, authenticated, host, session, sessionEnabled,
                 request, response, securityManager);
     }

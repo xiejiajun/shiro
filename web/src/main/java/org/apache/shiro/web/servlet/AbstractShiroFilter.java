@@ -356,9 +356,11 @@ public abstract class AbstractShiroFilter extends OncePerRequestFilter {
             final ServletRequest request = prepareServletRequest(servletRequest, servletResponse, chain);
             final ServletResponse response = prepareServletResponse(request, servletResponse, chain);
 
+            // TODO 根据request对应的session信息直接创建Subject对象
             final Subject subject = createSubject(request, response);
 
             //noinspection unchecked
+            // TODO DelegatingSubject.execute, 这里面有将subject绑定到处理当前request请求的线程的逻辑
             subject.execute(new Callable() {
                 public Object call() throws Exception {
                     updateSessionLastAccessTime(request, response);
